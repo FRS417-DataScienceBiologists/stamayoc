@@ -1,0 +1,1 @@
+# stamayoc
