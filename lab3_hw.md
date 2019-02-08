@@ -189,7 +189,7 @@ These data is not tidy yet because the years are separate vectors that have no d
 ```r
 fisheries_tidy <- 
   fisheries %>% 
- gather(num_range('X',1950:2012), key= "year", value='catch')
+ gather(num_range('X',1950:2012), key= "year", value="catch")
 fisheries
 ```
 
