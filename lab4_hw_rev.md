@@ -271,7 +271,7 @@ life_history %>%
 
 ```r
 life_history %>%
-  mutate(lifespan=max_life) %>% 
+  mutate(lifespan=max_life/12) %>% 
   group_by(order) %>%
   summarize(min=min(lifespan, na.rm=TRUE),
             max=max(lifespan, na.rm=TRUE),
