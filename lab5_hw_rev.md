@@ -87,14 +87,14 @@ life_history %>%
 ##  n obs: 1440 
 ##  n variables: 13 
 ## 
-## ── Variable type:character ─────────────────────────────────────────────────────────────────────────────────
+## ── Variable type:character ──────────────────────────────────────────────────────────
 ##  variable missing complete    n min max empty n_unique
 ##    family       0     1440 1440   6  15     0       96
 ##     Genus       0     1440 1440   3  16     0      618
 ##     order       0     1440 1440   7  14     0       17
 ##   species       0     1440 1440   3  17     0     1191
 ## 
-## ── Variable type:numeric ───────────────────────────────────────────────────────────────────────────────────
+## ── Variable type:numeric ────────────────────────────────────────────────────────────
 ##      variable missing complete    n      mean         sd   p0  p25     p50
 ##           AFR       0     1440 1440   -408.12     504.97 -999 -999    2.5 
 ##     gestation       0     1440 1440   -287.25     455.36 -999 -999    1.05
@@ -237,10 +237,63 @@ life_history %>%
 8. Now that you have the basic plot, color the points by taxonomic order.
 
 
+```r
+life_history %>%
+  ggplot(aes(x=newborn, y=gestation, color=order))+
+  geom_point()+
+  scale_x_log10()+
+  labs(title = "Gestation length vs. Newborn mass in Mammals",
+       x = "Newborn mass (g)",
+       y = "Gestation (months)")
+```
+
+```
+## Warning: Removed 673 rows containing missing values (geom_point).
+```
+
+![](lab5_hw_rev_files/figure-html/unnamed-chunk-12-1.png)<!-- -->
+
+
 9. Lastly, make the size of the points proportional to body mass.
+
+```r
+life_history %>%
+  ggplot(aes(x=newborn, y=gestation, color=order, size=mass))+
+  geom_point()+
+  scale_x_log10()+
+  labs(title = "Gestation time vs. Newborn mass in Mammals",
+       x = "Newborn mass (g)",
+       y = "Gestation (months)")+
+  scale_size(guide = "none")
+```
+
+```
+## Warning: Removed 691 rows containing missing values (geom_point).
+```
+
+![](lab5_hw_rev_files/figure-html/unnamed-chunk-13-1.png)<!-- -->
+
 
 
 10. Make a plot that shows the range of lifespan by order.
+
+```r
+life_history %>% 
+  ggplot(aes(x=order, y=max_life, fill=order))+
+  geom_boxplot()+
+  coord_flip()+
+  scale_y_log10()+
+  labs(title = "Lifespan by Taxonomic Order",
+       x = "Taxonomic Order",
+       y = "Lifespan (months)")
+```
+
+```
+## Warning: Removed 841 rows containing non-finite values (stat_boxplot).
+```
+
+![](lab5_hw_rev_files/figure-html/unnamed-chunk-14-1.png)<!-- -->
+
 
 
 ## Push your final code to [GitHub](https://github.com/FRS417-DataScienceBiologists)
